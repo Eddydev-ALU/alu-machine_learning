@@ -93,7 +93,7 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
 
     auto.add_loss(keras.backend.mean(kl_loss(z_mean, z_log_var)))
 
-    # Use sum-based binary crossentropy to match expected loss scale (~544)
+    # Sum binary crossentropy over input dims to match expected loss scale
     def reconstruction_loss(y_true, y_pred):
         """Binary crossentropy summed over input dims (not averaged)."""
         return keras.backend.sum(
